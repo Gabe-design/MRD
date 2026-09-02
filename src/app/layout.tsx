@@ -9,10 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MR.Digital — Web & AI Development for Local Businesses",
+  title: "Moss & Ross — Digital Studio for Local Businesses",
   description:
-    "MR.Digital builds modern websites and AI-powered tools for small businesses. Get a professional online presence that actually grows your business.",
-  keywords: ["web development", "AI development", "small business website", "local business"],
+    "Moss & Ross is a digital studio designing and building polished, practical websites for local businesses, with an easy process from first conversation to launch.",
+  keywords: ["web design", "web development", "small business website", "local business"],
 };
 
 export default function RootLayout({

@@ -1,61 +1,72 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const stats = [
-  { value: "50+", label: "Businesses Served" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "2×", label: "Avg. Lead Increase" },
+const audience = [
+  "Businesses that don't have a website yet",
+  "Sites that look years out of date",
+  "Pages that make the next step hard to take",
 ];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-[#0a0f1e] flex flex-col justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% -10%, #1d4ed8 0%, transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
+    <section className="relative min-h-screen bg-charcoal flex flex-col justify-center">
+      <div className="max-w-6xl mx-auto w-full px-6 pt-32 pb-16">
+        <div className="w-10 h-1 bg-clay mb-10" aria-hidden="true" />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-24">
-        <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/25 text-blue-300 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
-          <Sparkles size={14} />
-          Web &amp; AI Development for Local Businesses
-        </div>
-
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight max-w-4xl mb-6">
-          Your Business Deserves a{" "}
-          <span className="text-blue-400">Website That Works</span>
-        </h1>
-
-        <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed">
-          We build fast, modern websites and AI-powered tools for small businesses —
-          so you can focus on running your business while we grow it online.
+        <p className="text-clay text-xs font-medium uppercase tracking-[0.25em] mb-6">
+          A Two-Person Digital Studio
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-20">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-ivory leading-[1.1] tracking-tight max-w-3xl mb-8">
+          Polished, practical websites for local businesses.
+        </h1>
+
+        <p className="text-lg sm:text-xl text-sand max-w-2xl mb-12 leading-relaxed">
+          We design and build websites that make your business easy to find and
+          easy to contact. We handle everything from the first conversation to
+          launch.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <a
             href="#contact"
-            className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-lg text-base transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200"
           >
-            Get a Free Quote <ArrowRight size={18} />
+            Discuss Your Project <ArrowRight size={16} />
           </a>
           <a
-            href="#work"
-            className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-7 py-3.5 rounded-lg text-base border border-white/20 transition-colors duration-200"
+            href="#concepts"
+            className="inline-flex items-center justify-center gap-2 text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] border border-ivory/25 hover:border-ivory/50 transition-colors duration-200"
           >
-            See Our Work
+            Explore the Concepts
           </a>
         </div>
+        <p className="text-sand/80 text-sm mb-20">
+          The first call is free, and you see the full price before we start.
+        </p>
 
-        <div className="grid grid-cols-3 gap-6 max-w-lg">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p className="text-3xl font-bold text-white">{s.value}</p>
-              <p className="text-sm text-slate-400 mt-1">{s.label}</p>
-            </div>
-          ))}
+        <div className="max-w-2xl mb-16">
+          <p className="text-ivory/70 text-xs font-medium uppercase tracking-[0.2em] mb-5">
+            Built for
+          </p>
+          <ul className="space-y-3">
+            {audience.map((item, i) => (
+              <li key={item} className="flex items-baseline gap-4">
+                <span className="text-clay text-sm font-medium">
+                  0{i + 1}
+                </span>
+                <span className="text-sand text-base sm:text-lg">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="border-t border-ivory/15 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-sand text-xs font-medium uppercase tracking-[0.2em]">
+            Strategy / Design / Development
+          </p>
+          <p className="text-sand text-xs font-medium uppercase tracking-[0.2em]">
+            Crafted with Intention
+          </p>
         </div>
       </div>
     </section>

@@ -1,9 +1,10 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Work from "@/components/Work";
+import Concepts from "@/components/Concepts";
 import HowItWorks from "@/components/HowItWorks";
-import Testimonials from "@/components/Testimonials";
+import WhatsIncluded from "@/components/WhatsIncluded";
+import CTABand from "@/components/CTABand";
+import MeetUs from "@/components/MeetUs";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -13,10 +14,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Services />
-        <Work />
+        <Concepts />
         <HowItWorks />
-        <Testimonials />
+        <WhatsIncluded />
+        <CTABand />
+        <MeetUs />
         <CTASection />
       </main>
       <Footer />

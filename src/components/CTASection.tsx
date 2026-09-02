@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
+
+const inputClasses =
+  "w-full bg-ivory/5 border border-ivory/15 text-ivory placeholder-sand/50 px-4 py-3 text-sm focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition-colors";
+
+const selectClasses = `${inputClasses} appearance-none [&>option]:text-charcoal`;
 
 export default function CTASection() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1000));
@@ -16,48 +21,38 @@ export default function CTASection() {
   }
 
   return (
-    <section id="contact" className="bg-[#0a0f1e] py-24 px-6 relative overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 100%, #1d4ed8 0%, transparent 70%)",
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative max-w-2xl mx-auto text-center">
-        <p className="text-blue-400 font-semibold text-sm uppercase tracking-widest mb-4">
-          Get Started
+    <section id="contact" className="bg-charcoal py-24 px-6">
+      <div className="max-w-2xl mx-auto text-center">
+        <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
+          Project Inquiries
         </p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-          Ready to Grow Your Business Online?
+        <h2 className="text-3xl sm:text-4xl font-medium text-ivory tracking-tight mb-4">
+          Discuss Your Project
         </h2>
-        <p className="text-slate-400 text-lg mb-10">
-          Tell us a bit about your business and we&apos;ll get back to you with a
-          free consultation. No obligation, no tech jargon.
+        <p className="text-sand text-lg mb-10">
+          Share a few details and we&apos;ll reply within one business day.
         </p>
 
         {submitted ? (
-          <div className="bg-white/10 border border-white/20 rounded-2xl p-10 text-center">
-            <CheckCircle size={48} className="text-green-400 mx-auto mb-4" />
-            <h3 className="text-white text-xl font-bold mb-2">
+          <div className="bg-ivory/5 border border-ivory/15 p-10 text-center">
+            <CheckCircle size={48} className="text-clay mx-auto mb-4" />
+            <h3 className="text-ivory text-xl font-semibold mb-2">
               We&apos;ll be in touch soon!
             </h3>
-            <p className="text-slate-400">
+            <p className="text-sand">
               Thanks for reaching out. We typically respond within one business day.
             </p>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-white/5 border border-white/10 rounded-2xl p-8 text-left space-y-4"
+            className="bg-ivory/5 border border-ivory/10 p-8 text-left space-y-4"
             noValidate
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1.5">
-                  Your Name <span className="text-red-400" aria-hidden="true">*</span>
+                <label htmlFor="name" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                  Your Name <span className="text-clay" aria-hidden="true">*</span>
                 </label>
                 <input
                   id="name"
@@ -66,12 +61,12 @@ export default function CTASection() {
                   required
                   autoComplete="name"
                   placeholder="Jane Smith"
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder-slate-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  className={inputClasses}
                 />
               </div>
               <div>
-                <label htmlFor="business" className="block text-sm font-medium text-slate-300 mb-1.5">
-                  Business Name <span className="text-red-400" aria-hidden="true">*</span>
+                <label htmlFor="business" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                  Business Name <span className="text-clay" aria-hidden="true">*</span>
                 </label>
                 <input
                   id="business"
@@ -79,14 +74,14 @@ export default function CTASection() {
                   type="text"
                   required
                   placeholder="Acme Plumbing"
-                  className="w-full bg-white/10 border border-white/20 text-white placeholder-slate-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                  className={inputClasses}
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1.5">
-                Email Address <span className="text-red-400" aria-hidden="true">*</span>
+              <label htmlFor="email" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                Email Address <span className="text-clay" aria-hidden="true">*</span>
               </label>
               <input
                 id="email"
@@ -95,33 +90,66 @@ export default function CTASection() {
                 required
                 autoComplete="email"
                 placeholder="jane@yourbusiness.com"
-                className="w-full bg-white/10 border border-white/20 text-white placeholder-slate-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className={inputClasses}
               />
             </div>
 
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="budget" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                  Budget Range <span className="text-sand/60 font-normal">(optional)</span>
+                </label>
+                <select id="budget" name="budget" className={selectClasses} defaultValue="">
+                  <option value="" disabled>
+                    Select a range
+                  </option>
+                  <option value="under-500">Under $500</option>
+                  <option value="500-1k">$500 – $1,000</option>
+                  <option value="1k-2.5k">$1,000 – $2,500</option>
+                  <option value="2.5k-5k">$2,500 – $5,000</option>
+                  <option value="5k-plus">$5,000+</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="timing" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                  Desired Timing <span className="text-sand/60 font-normal">(optional)</span>
+                </label>
+                <select id="timing" name="timing" className={selectClasses} defaultValue="">
+                  <option value="" disabled>
+                    Select timing
+                  </option>
+                  <option value="asap">As soon as possible</option>
+                  <option value="1-3-months">Within 1–3 months</option>
+                  <option value="3-plus-months">3+ months out</option>
+                  <option value="exploring">Just exploring</option>
+                </select>
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-1.5">
-                What do you need help with?
+              <label htmlFor="message" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                Project Goals
               </label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
-                placeholder="Tell us about your business and what you're looking for..."
-                className="w-full bg-white/10 border border-white/20 text-white placeholder-slate-500 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
+                placeholder="What should the website do for your business? New site, redesign, more inquiries, online bookings..."
+                className={`${inputClasses} resize-none`}
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white font-semibold px-6 py-3.5 rounded-lg transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark disabled:bg-clay/50 text-ivory font-semibold px-6 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
             >
               {loading ? (
-                <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <span className="inline-block w-4 h-4 border-2 border-ivory/30 border-t-ivory rounded-full animate-spin" />
               ) : (
                 <>
-                  Send Message <Send size={16} />
+                  Send Inquiry <Send size={16} />
                 </>
               )}
             </button>

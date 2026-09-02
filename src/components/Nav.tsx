@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Our Work", href: "#work" },
+  { label: "Concepts", href: "#concepts" },
   { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "What's Included", href: "#included" },
+  { label: "About", href: "#about" },
 ];
 
 export default function Nav() {
@@ -24,13 +24,16 @@ export default function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0a0f1e]/95 backdrop-blur-md shadow-lg shadow-black/20"
+          ? "bg-charcoal/95 backdrop-blur-md border-b border-ivory/10"
           : "bg-transparent"
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-1 text-white font-bold text-xl tracking-tight">
-          MR.<span className="text-blue-400">Digital</span>
+        <a
+          href="#"
+          className="text-ivory font-semibold text-sm uppercase tracking-[0.25em]"
+        >
+          Moss <span className="text-clay">&amp;</span> Ross
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -38,7 +41,7 @@ export default function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-slate-300 hover:text-white text-sm font-medium transition-colors duration-200"
+                className="text-sand hover:text-ivory text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 {l.label}
               </a>
@@ -48,14 +51,14 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-lg transition-colors duration-200"
+          className="hidden md:inline-flex items-center gap-2 bg-clay hover:bg-clay-dark text-ivory text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2.5 transition-colors duration-200"
         >
-          Get a Free Quote
+          Discuss Your Project
         </a>
 
         <button
           aria-label="Toggle menu"
-          className="md:hidden text-white p-2"
+          className="md:hidden text-ivory p-2"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -63,13 +66,13 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-[#0a0f1e]/98 backdrop-blur-md px-6 pb-6 border-t border-white/10">
+        <div className="md:hidden bg-charcoal/95 backdrop-blur-md px-6 pb-6 border-t border-ivory/10">
           <ul className="flex flex-col gap-4 pt-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-slate-300 hover:text-white text-base font-medium transition-colors"
+                  className="text-sand hover:text-ivory text-sm font-medium uppercase tracking-[0.15em] transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
@@ -79,10 +82,10 @@ export default function Nav() {
             <li>
               <a
                 href="#contact"
-                className="inline-flex bg-blue-500 hover:bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+                className="inline-flex bg-clay hover:bg-clay-dark text-ivory font-semibold px-5 py-2.5 text-xs uppercase tracking-[0.15em] transition-colors"
                 onClick={() => setOpen(false)}
               >
-                Get a Free Quote
+                Discuss Your Project
               </a>
             </li>
           </ul>

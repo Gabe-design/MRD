@@ -1,66 +1,120 @@
-import { MessageSquare, PencilRuler, Rocket } from "lucide-react";
-
 const steps = [
   {
     step: "01",
-    icon: MessageSquare,
-    title: "Free Discovery Call",
+    title: "Discovery",
     description:
-      "Tell us about your business, your goals, and what's frustrating you online. No tech jargon — just a normal conversation.",
+      "A free call about your business, your customers, and what the website needs to do. We ask questions in plain English.",
+    yourPart: "Tell us how your business works. There's nothing to prepare.",
   },
   {
     step: "02",
-    icon: PencilRuler,
-    title: "We Build It",
+    title: "Design",
     description:
-      "Our team designs and builds your site or tool, keeping you in the loop with updates. Most projects ship within 2–4 weeks.",
+      "We turn the conversation into a design direction: layout, colors, and the copy that sells your work.",
+    yourPart: "Tell us what you like and what you don't. Your feedback shapes the direction before we build.",
   },
   {
     step: "03",
-    icon: Rocket,
-    title: "Launch & Grow",
+    title: "Build",
     description:
-      "We go live and hand you the keys. Ongoing support means you're never left stranded when something needs updating.",
+      "We build the real site, fast and mobile-first, and share a private preview link as it takes shape.",
+    yourPart: "Almost nothing. Watch progress from the preview link if you like.",
+  },
+  {
+    step: "04",
+    title: "Review & Revisions",
+    description:
+      "You click through the whole site on your phone and computer. We refine it through the revision rounds we agreed on up front.",
+    yourPart: "Tell us anything that feels off. That's what the rounds are for.",
+  },
+  {
+    step: "05",
+    title: "Launch & Support",
+    description:
+      "We handle the domain, hosting, and go-live, then stay available for updates and changes after launch.",
+    yourPart: "Announce it. We take care of the rest.",
+  },
+];
+
+const workingDetails = [
+  {
+    title: "Who runs the project",
+    body: "One of us runs your project from start to finish. You deal with the same person at every step.",
+  },
+  {
+    title: "How feedback works",
+    body: "You open a real preview link and tell us what you think, by message or a quick call. \"The header feels cramped\" is all the design vocabulary you need.",
+  },
+  {
+    title: "What you supply",
+    body: "Your logo if you have one, photos of your work, and your business details: services, prices, hours. We set up all the content from there.",
+  },
+  {
+    title: "After launch",
+    body: "We handle hosting, small updates, and fixes through a support arrangement we agree on before the project starts.",
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="process" className="bg-slate-50 py-24 px-6">
+    <section id="process" className="bg-white py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-blue-500 font-semibold text-sm uppercase tracking-widest mb-3">
-            How It Works
+          <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
+            Our Process
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            Simple. Fast. No Surprises.
+          <h2 className="text-3xl sm:text-4xl font-medium text-charcoal tracking-tight mb-4">
+            From First Conversation to Launch
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">
-            We keep the process straightforward so you always know what&apos;s
-            happening and when.
+          <p className="text-charcoal/60 text-lg max-w-xl mx-auto">
+            Five steps. You always know which one we&apos;re on and when
+            you&apos;re needed.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          <div
-            className="hidden md:block absolute top-10 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px bg-gradient-to-r from-blue-200 via-blue-300 to-blue-200"
-            aria-hidden="true"
-          />
-
-          {steps.map((s) => (
-            <div key={s.step} className="flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <div className="w-20 h-20 rounded-2xl bg-white border-2 border-blue-100 shadow-lg shadow-blue-50 flex items-center justify-center">
-                  <s.icon size={28} className="text-blue-500" />
-                </div>
-                <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
-                  {s.step.replace("0", "")}
-                </span>
+        <ol className="max-w-3xl mx-auto mb-20">
+          {steps.map((s, i) => (
+            <li
+              key={s.step}
+              className={`grid grid-cols-[auto_1fr] gap-x-6 sm:gap-x-10 pb-10 ${
+                i < steps.length - 1 ? "border-b border-charcoal/10 mb-10" : ""
+              }`}
+            >
+              <span className="text-clay text-2xl sm:text-3xl font-medium leading-none pt-1">
+                {s.step}
+              </span>
+              <div>
+                <h3 className="font-semibold text-charcoal text-xl mb-2">
+                  {s.title}
+                </h3>
+                <p className="text-charcoal/60 leading-relaxed mb-3">
+                  {s.description}
+                </p>
+                <p className="text-sm leading-relaxed">
+                  <span className="text-clay-dark font-medium uppercase tracking-[0.1em] text-xs mr-2">
+                    Your part
+                  </span>
+                  <span className="text-charcoal/60">{s.yourPart}</span>
+                </p>
               </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">{s.title}</h3>
-              <p className="text-slate-500 leading-relaxed max-w-xs">{s.description}</p>
-            </div>
+            </li>
           ))}
+        </ol>
+
+        <div className="border-t border-charcoal/10 pt-14">
+          <h3 className="text-center text-charcoal font-medium text-2xl tracking-tight mb-10">
+            The Details That Make It Easy
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workingDetails.map((d) => (
+              <div key={d.title} className="bg-ivory border border-charcoal/10 p-6">
+                <h4 className="font-semibold text-charcoal text-base mb-2">
+                  {d.title}
+                </h4>
+                <p className="text-charcoal/60 text-sm leading-relaxed">{d.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

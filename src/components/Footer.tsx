@@ -1,52 +1,55 @@
 const year = new Date().getFullYear();
 
 const links = {
-  Company: [
-    { label: "Services", href: "#services" },
-    { label: "Our Work", href: "#work" },
+  Explore: [
+    { label: "Concepts", href: "#concepts" },
     { label: "Process", href: "#process" },
+    { label: "What's Included", href: "#included" },
+    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
-  Services: [
-    { label: "Website Design", href: "#services" },
-    { label: "AI Tools", href: "#services" },
-    { label: "Analytics", href: "#services" },
-    { label: "Support Plans", href: "#services" },
+  "Concept Sites": [
+    { label: "Summit Landscapes", href: "/concepts/summit-landscapes" },
+    { label: "Fade & Co.", href: "/concepts/fade-and-co" },
+    { label: "BrightNest Cleaning", href: "/concepts/brightnest-cleaning" },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060c1a] border-t border-white/10 px-6 pt-14 pb-8">
+    <footer className="bg-charcoal border-t border-ivory/10 px-6 pt-14 pb-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 md:col-span-2">
-            <a href="#" className="text-white font-bold text-xl tracking-tight">
-              MR.<span className="text-blue-400">Digital</span>
+            <a href="#" className="text-ivory font-semibold text-sm uppercase tracking-[0.25em]">
+              Moss <span className="text-clay">&amp;</span> Ross
+              <span className="block mt-1 text-xs font-normal italic normal-case text-sand tracking-normal">
+                Digital Studio
+              </span>
             </a>
-            <p className="mt-3 text-slate-400 text-sm leading-relaxed max-w-xs">
-              Web &amp; AI development for small businesses. We build the digital
-              tools that help local businesses compete and grow.
+            <p className="mt-4 text-sand text-sm leading-relaxed max-w-xs">
+              Polished, practical websites for local businesses, designed and
+              built by the two of us.
             </p>
-            <p className="mt-4 text-slate-400 text-sm">
+            <p className="mt-4 text-sand text-sm">
               <a
-                href="mailto:hello@mrdigital.com"
-                className="hover:text-blue-400 transition-colors"
+                href="mailto:hello@mrd.com"
+                className="hover:text-clay transition-colors"
               >
-                hello@mrdigital.com
+                hello@mrd.com
               </a>
             </p>
           </div>
 
           {Object.entries(links).map(([group, items]) => (
             <div key={group}>
-              <h4 className="text-white font-semibold text-sm mb-4">{group}</h4>
+              <h4 className="text-ivory font-medium text-xs uppercase tracking-[0.2em] mb-4">{group}</h4>
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="text-slate-400 hover:text-white text-sm transition-colors"
+                      className="text-sand hover:text-ivory text-sm transition-colors"
                     >
                       {item.label}
                     </a>
@@ -57,12 +60,13 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">
-            &copy; {year} MR.Digital. All rights reserved.
+        <div className="border-t border-ivory/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sand/70 text-sm">
+            &copy; {year} Moss &amp; Ross. All rights reserved.
           </p>
-          <p className="text-slate-600 text-xs">
-            Built with Next.js &amp; Tailwind CSS
+          <p className="text-sand/50 text-xs">
+            Concept sites shown are fictional businesses, labeled as
+            self-initiated work.
           </p>
         </div>
       </div>
