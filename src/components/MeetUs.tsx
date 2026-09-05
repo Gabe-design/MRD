@@ -3,13 +3,13 @@ const founders = [
     initial: "M",
     name: "Henry Moss",
     role: "Co-founder · Client Relations & Design",
-    bio: "[Two to three sentences describing role]",
+    bio: "I was born and raised in Westlake Village, and I'm studying accounting at Moorpark College. At Moss & Ross I handle the client side: the first call, the questions about how your business actually runs, and the check-ins while we build. I look forward to meeting you if you decide to work with us.",
   },
   {
     initial: "R",
     name: "Gabriel Ross",
     role: "Co-founder · Design & Development",
-    bio: "[Two to three sentences describing role]",
+    bio: "[Where you're from and what you're studying or your background. What you handle at Moss & Ross. A closing line to the reader. Match Henry's length.]",
   },
 ];
 
