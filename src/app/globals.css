@@ -12,3 +12,43 @@ body {
   color: #1d1c1a;
   -webkit-font-smoothing: antialiased;
 }
+
+@layer utilities {
+  /* Feather the edges of the brand animation so its near-black frame melts into
+     the charcoal hero instead of reading as a hard rectangle. Stops stay clear
+     of all lettering: the wordmark sits at 26-74% across and 42-58% down, and
+     the monogram sequence reaches 33-70% across and 20-79% down. */
+  .mask-feather-y {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 15%,
+      #000 85%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 15%,
+      #000 85%,
+      transparent 100%
+    );
+  }
+
+  .mask-feather-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 18%,
+      #000 82%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 18%,
+      #000 82%,
+      transparent 100%
+    );
+  }
+}
