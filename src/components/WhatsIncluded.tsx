@@ -7,6 +7,7 @@ import {
   LifeBuoy,
   ShieldCheck,
 } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const deliverables = [
   {
@@ -60,7 +61,7 @@ export default function WhatsIncluded() {
   return (
     <section id="included" className="bg-ivory-deep py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
             What&apos;s Included
           </p>
@@ -71,11 +72,11 @@ export default function WhatsIncluded() {
             Every project includes the pieces below. Before we start, we write
             down the exact scope: pages, features, and support.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {deliverables.map((d) => (
-            <div key={d.title} className="bg-white border border-charcoal/10 p-6">
+          {deliverables.map((d, i) => (
+            <Reveal key={d.title} delay={(i % 3) * 90} className="bg-white border border-charcoal/10 p-6">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-charcoal mb-5">
                 <d.icon size={22} className="text-clay" />
               </div>
@@ -83,25 +84,25 @@ export default function WhatsIncluded() {
                 {d.title}
               </h3>
               <p className="text-charcoal/60 text-sm leading-relaxed">{d.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
 
         <div className="border-t border-charcoal/10 pt-14">
-          <div className="flex items-center justify-center gap-3 mb-10">
+          <Reveal className="flex items-center justify-center gap-3 mb-10">
             <ShieldCheck size={22} className="text-clay" />
             <h3 className="text-charcoal font-medium text-2xl tracking-tight">
               Our Commitments
             </h3>
-          </div>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
-            {commitments.map((c) => (
-              <div key={c.title} className="bg-white border border-charcoal/10 p-8">
+            {commitments.map((c, i) => (
+              <Reveal key={c.title} delay={i * 90} className="bg-white border border-charcoal/10 p-8">
                 <h4 className="font-semibold text-charcoal text-lg mb-3">
                   {c.title}
                 </h4>
                 <p className="text-charcoal/60 text-sm leading-relaxed">{c.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import BrandIntro from "@/components/BrandIntro";
+import Reveal from "@/components/Reveal";
 
 const audience = [
   "Businesses that don't have a website yet",
@@ -12,7 +13,7 @@ export default function Hero() {
     <section className="relative min-h-screen bg-charcoal flex flex-col justify-center">
       <div className="max-w-6xl mx-auto w-full px-6 pt-32 pb-16">
         <div className="grid gap-y-14 mb-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-16 lg:gap-y-12">
-          <div className="lg:col-start-1 lg:row-start-1">
+          <Reveal className="lg:col-start-1 lg:row-start-1">
             <div className="w-10 h-1 bg-clay mb-10" aria-hidden="true" />
 
             <p className="text-clay text-xs font-medium uppercase tracking-[0.25em] mb-6">
@@ -46,11 +47,16 @@ export default function Hero() {
             <p className="text-sand/80 text-sm">
               The first call is free, and you see the full price before we start.
             </p>
-          </div>
+          </Reveal>
 
-          <BrandIntro className="lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center" />
+          <Reveal
+            delay={120}
+            className="lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:self-center"
+          >
+            <BrandIntro />
+          </Reveal>
 
-          <div className="max-w-2xl lg:col-start-1 lg:row-start-2">
+          <Reveal delay={80} className="max-w-2xl lg:col-start-1 lg:row-start-2">
             <p className="text-ivory/70 text-xs font-medium uppercase tracking-[0.2em] mb-5">
               Built for
             </p>
@@ -64,7 +70,7 @@ export default function Hero() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
 
         <div className="border-t border-ivory/15 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">

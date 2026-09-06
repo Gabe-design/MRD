@@ -22,7 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} antialiased`}>
+        {/* Hides revealable blocks before the body paints, so they can fade in
+            rather than appearing and then blinking out on hydration. Skipped
+            entirely without an observer or under reduced motion, and undone if
+            hydration never arrives. */}
+        <script dangerouslySetInnerHTML={{ __html: "(function(){var d=document.documentElement;if(!('requestAnimationFrame' in window))return;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('js-reveal');setTimeout(function(){if(!d.hasAttribute('data-reveal-ready'))d.classList.remove('js-reveal');},4000);})();" }} />
+        {children}
+      </body>
     </html>
   );
 }

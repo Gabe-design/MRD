@@ -47,6 +47,36 @@ body {
 }
 
 @layer utilities {
+  /* Fade-up entrance for content blocks. The hidden state is scoped to
+     .js-reveal, which the layout's inline script adds before the body paints
+     and only when an observer exists and motion is welcome. Without it the
+     exported HTML renders exactly as it always did. */
+  .reveal {
+    transition:
+      opacity 700ms ease-out,
+      transform 700ms ease-out;
+  }
+
+  .js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .js-reveal .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Covers the preference changing after the script has run. */
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+
   /* Feather the edges of the brand animation so its near-black frame melts into
      the charcoal hero instead of reading as a hard rectangle. Stops stay clear
      of all lettering: the wordmark sits at 26-74% across and 42-58% down, and
