@@ -1,4 +1,12 @@
-const founders = [
+type Founder = {
+  initial: string;
+  name: string;
+  role: string;
+  /** Omitted while the published biography is still unwritten. */
+  bio?: string;
+};
+
+const founders: Founder[] = [
   {
     initial: "M",
     name: "Henry Moss",
@@ -9,7 +17,6 @@ const founders = [
     initial: "R",
     name: "Gabriel Ross",
     role: "Co-founder · Design & Development",
-    bio: "[Where you're from and what you're studying or your background. What you handle at Moss & Ross. A closing line to the reader. Match Henry's length.]",
   },
 ];
 
@@ -42,10 +49,16 @@ export default function MeetUs() {
               <h3 className="font-semibold text-charcoal text-xl mb-1">
                 {f.name}
               </h3>
-              <p className="text-clay-dark text-xs font-medium uppercase tracking-[0.15em] mb-4">
+              <p
+                className={`text-clay-dark text-xs font-medium uppercase tracking-[0.15em] ${
+                  f.bio ? "mb-4" : ""
+                }`}
+              >
                 {f.role}
               </p>
-              <p className="text-charcoal/60 text-sm leading-relaxed">{f.bio}</p>
+              {f.bio && (
+                <p className="text-charcoal/60 text-sm leading-relaxed">{f.bio}</p>
+              )}
             </div>
           ))}
         </div>
