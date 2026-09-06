@@ -28,6 +28,17 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
+      {/* Reading position, pinned to the nav's hairline. Fades in with the nav
+          background, since there is nothing to indicate at the top of the page.
+          Sits at top-16 rather than the header's bottom so the open mobile menu
+          does not push it down. */}
+      <div
+        aria-hidden="true"
+        className={`scroll-progress absolute left-0 top-16 h-0.5 w-full origin-left bg-clay transition-opacity duration-300 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#"
