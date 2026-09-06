@@ -1,0 +1,17 @@
+# Cloudflare Pages reads this from the deploy root.
+# Next writes hashed filenames under /_next/static, so those are safe to pin
+# forever. The brand media keeps a stable name, so it gets a shorter life:
+# rename the file if you ever need a change to reach repeat visitors sooner.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/moss-ross-intro.mp4
+  Cache-Control: public, max-age=86400
+
+/moss-ross-intro-poster.webp
+  Cache-Control: public, max-age=86400
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

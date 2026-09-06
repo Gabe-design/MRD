@@ -1,23 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 const inputClasses =
   "w-full bg-ivory/5 border border-ivory/15 text-ivory placeholder-sand/50 px-4 py-3 text-sm focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition-colors";
 
 const selectClasses = `${inputClasses} appearance-none [&>option]:text-charcoal`;
 
+const CONTACT_EMAIL = "hello@mrd.com";
+
 export default function CTASection() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
+
+    // Read the form before awaiting; currentTarget is nulled after the tick.
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(body.error || "That didn't send.");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "That didn't send.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -139,6 +160,37 @@ export default function CTASection() {
                 className={`${inputClasses} resize-none`}
               />
             </div>
+
+            {/* Honeypot: hidden from people, tempting to bots. */}
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="company">Company (leave this blank)</label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
+            {error && (
+              <div
+                role="alert"
+                className="flex items-start gap-3 border border-clay/40 bg-clay/10 px-4 py-3"
+              >
+                <AlertCircle size={18} className="text-clay shrink-0 mt-0.5" />
+                <p className="text-sand text-sm">
+                  {error} Please email us at{" "}
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="text-ivory underline"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>{" "}
+                  and we&apos;ll pick it up from there.
+                </p>
+              </div>
+            )}
 
             <button
               type="submit"
