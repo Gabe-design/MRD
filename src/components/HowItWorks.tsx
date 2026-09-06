@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 const steps = [
   {
     step: "01",
@@ -59,7 +61,7 @@ export default function HowItWorks() {
   return (
     <section id="process" className="bg-white py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
             Our Process
           </p>
@@ -70,11 +72,12 @@ export default function HowItWorks() {
             Five steps. You always know which one we&apos;re on and when
             you&apos;re needed.
           </p>
-        </div>
+        </Reveal>
 
         <ol className="max-w-3xl mx-auto mb-20">
           {steps.map((s, i) => (
-            <li
+            <Reveal
+              as="li"
               key={s.step}
               className={`grid grid-cols-[auto_1fr] gap-x-6 sm:gap-x-10 pb-10 ${
                 i < steps.length - 1 ? "border-b border-charcoal/10 mb-10" : ""
@@ -97,22 +100,22 @@ export default function HowItWorks() {
                   <span className="text-charcoal/60">{s.yourPart}</span>
                 </p>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
 
         <div className="border-t border-charcoal/10 pt-14">
-          <h3 className="text-center text-charcoal font-medium text-2xl tracking-tight mb-10">
+          <Reveal as="h3" className="text-center text-charcoal font-medium text-2xl tracking-tight mb-10">
             The Details That Make It Easy
-          </h3>
+          </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workingDetails.map((d) => (
-              <div key={d.title} className="bg-ivory border border-charcoal/10 p-6">
+            {workingDetails.map((d, i) => (
+              <Reveal key={d.title} delay={i * 80} className="bg-ivory border border-charcoal/10 p-6">
                 <h4 className="font-semibold text-charcoal text-base mb-2">
                   {d.title}
                 </h4>
                 <p className="text-charcoal/60 text-sm leading-relaxed">{d.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

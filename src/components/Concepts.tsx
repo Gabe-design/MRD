@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const concepts = [
   {
@@ -37,7 +38,7 @@ export default function Concepts() {
   return (
     <section id="concepts" className="bg-ivory py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
             Selected Concepts
           </p>
@@ -49,14 +50,12 @@ export default function Concepts() {
             complete concept sites for fictional businesses. Click through them
             and judge the work.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {concepts.map((c) => (
-            <article
-              key={c.name}
-              className="border border-charcoal/10 bg-white p-6 flex flex-col"
-            >
+          {concepts.map((c, i) => (
+            <Reveal key={c.name} delay={i * 90} className="flex">
+              <article className="border border-charcoal/10 bg-white p-6 flex flex-col w-full">
               <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-charcoal/50 border border-charcoal/15 self-start px-2.5 py-1 mb-5">
                 Self-initiated concept · Fictional business
               </p>
@@ -108,14 +107,15 @@ export default function Concepts() {
                   Read the Case Study <ArrowRight size={14} />
                 </a>
               </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
 
-        <p className="text-center text-charcoal/50 text-sm mt-10 max-w-2xl mx-auto">
+        <Reveal as="p" className="text-center text-charcoal/50 text-sm mt-10 max-w-2xl mx-auto">
           Each concept is a fictional business we invented to demonstrate a
           complete experience. The disclosure appears again on every demo page.
-        </p>
+        </Reveal>
       </div>
     </section>
   );

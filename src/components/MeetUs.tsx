@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 type Founder = {
   initial: string;
   name: string;
@@ -24,7 +26,7 @@ export default function MeetUs() {
   return (
     <section id="about" className="bg-ivory py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
             Meet Moss &amp; Ross
           </p>
@@ -35,11 +37,11 @@ export default function MeetUs() {
             When you hire Moss &amp; Ross, you work with the two of us and
             nobody else.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid sm:grid-cols-2 gap-6">
-          {founders.map((f) => (
-            <div key={f.initial} className="bg-white border border-charcoal/10 p-8">
+          {founders.map((f, i) => (
+            <Reveal key={f.initial} delay={i * 100} className="bg-white border border-charcoal/10 p-8">
               <div
                 className="w-20 h-20 rounded-full bg-charcoal text-clay flex items-center justify-center text-2xl font-semibold mb-6"
                 aria-hidden="true"
@@ -59,7 +61,7 @@ export default function MeetUs() {
               {f.bio && (
                 <p className="text-charcoal/60 text-sm leading-relaxed">{f.bio}</p>
               )}
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

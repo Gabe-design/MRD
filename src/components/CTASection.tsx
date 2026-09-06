@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const inputClasses =
   "w-full bg-ivory/5 border border-ivory/15 text-ivory placeholder-sand/50 px-4 py-3 text-sm focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition-colors";
@@ -44,15 +45,17 @@ export default function CTASection() {
   return (
     <section id="contact" className="bg-charcoal py-24 px-6">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
-          Project Inquiries
-        </p>
+        <Reveal>
+          <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
+            Project Inquiries
+          </p>
         <h2 className="text-3xl sm:text-4xl font-medium text-ivory tracking-tight mb-4">
           Discuss Your Project
         </h2>
-        <p className="text-sand text-lg mb-10">
-          Share a few details and we&apos;ll reply within one business day.
-        </p>
+          <p className="text-sand text-lg mb-10">
+            Share a few details and we&apos;ll reply within one business day.
+          </p>
+        </Reveal>
 
         {submitted ? (
           <div className="bg-ivory/5 border border-ivory/15 p-10 text-center">
