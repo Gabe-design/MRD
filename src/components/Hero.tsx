@@ -46,7 +46,8 @@ export default function Hero() {
               </a>
             </div>
             <p className="text-sand/80 text-sm">
-              The first call is free, and you see the full price before we start.
+              Free first call. A working demo before you pay anything. The
+              full price in writing before we start.
             </p>
             <p className="text-sand/80 text-sm mt-2">
               Based in {HOME_AREA}, working with businesses across{" "}

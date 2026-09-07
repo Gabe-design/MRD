@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   Smartphone,
   MessageSquare,
   FileText,
@@ -95,6 +96,30 @@ export default function WhatsIncluded() {
               Our Commitments
             </h3>
           </Reveal>
+          {/* The one promise that applies before any money changes hands, so it
+              sits above the three that describe how the work runs once it
+              does. */}
+          <Reveal className="bg-charcoal p-8 sm:p-10 mb-6">
+            <div className="w-10 h-1 bg-clay mb-6" aria-hidden="true" />
+            <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
+              Free Demo
+            </p>
+            <h4 className="text-ivory text-2xl sm:text-3xl font-medium tracking-tight mb-4">
+              See it before you pay a thing.
+            </h4>
+            <p className="text-sand leading-relaxed max-w-2xl mb-8">
+              We design and build a working demo of your site first, at no cost.
+              You open it on your own phone, click through the real thing, and
+              decide from there. If it isn&apos;t right, you don&apos;t pay.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200"
+            >
+              Start a Free Demo <ArrowRight size={16} />
+            </a>
+          </Reveal>
+
           <div className="grid md:grid-cols-3 gap-6">
             {commitments.map((c, i) => (
               <Reveal key={c.title} delay={i * 90} className="bg-white border border-charcoal/10 p-8">
