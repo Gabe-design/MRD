@@ -9,8 +9,8 @@ export default function CTABand() {
             Ready when you are.
           </h2>
           <p className="text-sand text-sm">
-            Free first call · Full price before we start · Reply within one
-            business day
+            Free first call · Working demo before you pay · Full price in
+            writing before we start
           </p>
         </div>
         <a

@@ -46,7 +46,38 @@ body {
   }
 }
 
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
 @layer utilities {
+  /* Entrance for the demo-offer dialog. Both are opacity-and-nudge only, and
+     both are dropped entirely under reduced motion: the dialog still appears,
+     it just arrives rather than animates. */
+  .dialog-in {
+    animation: dialog-in 220ms ease-out both;
+  }
+
+  .backdrop-in {
+    animation: backdrop-in 220ms ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dialog-in,
+    .backdrop-in {
+      animation: none;
+    }
+  }
+
   /* Fade-up entrance for content blocks. The hidden state is scoped to
      .js-reveal, which the layout's inline script adds before the body paints
      and only when an observer exists and motion is welcome. Without it the

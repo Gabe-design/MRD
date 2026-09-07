@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL, HOME_AREA, REMOTE_NOTE, SERVICE_AREA } from "@/lib/site";
+
 const year = new Date().getFullYear();
 
 const links = {
@@ -6,6 +8,7 @@ const links = {
     { label: "Process", href: "#process" },
     { label: "What's Included", href: "#included" },
     { label: "About", href: "#about" },
+    { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ],
   "Concept Sites": [
@@ -31,14 +34,27 @@ export default function Footer() {
               Polished, practical websites for local businesses, designed and
               built by the two of us.
             </p>
-            <p className="mt-2 text-sand text-sm">
-              <a
-                href="mailto:hello@mrd.com"
-                className="inline-flex min-h-[44px] items-center hover:text-clay transition-colors"
-              >
-                hello@mrd.com
-              </a>
-            </p>
+            {/* Falls back to the form while no public address is configured.
+                min-h keeps it tappable on a phone either way. */}
+            {CONTACT_EMAIL ? (
+              <p className="mt-2 text-sand text-sm">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="inline-flex min-h-[44px] items-center hover:text-clay transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+            ) : (
+              <p className="mt-2 text-sand text-sm">
+                <a
+                  href="#contact"
+                  className="inline-flex min-h-[44px] items-center hover:text-clay transition-colors"
+                >
+                  Send us a project inquiry
+                </a>
+              </p>
+            )}
           </div>
 
           {Object.entries(links).map(([group, items]) => (
@@ -60,6 +76,18 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className="border-t border-ivory/10 pt-8 pb-8 mb-4">
+          <h4 className="text-ivory font-medium text-xs uppercase tracking-[0.2em] mb-4">
+            Areas We Serve
+          </h4>
+          <p className="text-sand text-sm leading-relaxed max-w-3xl">
+            {SERVICE_AREA.join(" · ")}
+          </p>
+          <p className="text-sand/70 text-sm mt-3 max-w-3xl">
+            Based in {HOME_AREA}. {REMOTE_NOTE}
+          </p>
         </div>
 
         <div className="border-t border-ivory/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import BrandIntro from "@/components/BrandIntro";
 import PatternBackdrop from "@/components/PatternBackdrop";
 import Reveal from "@/components/Reveal";
+import { HOME_AREA, REGION, REMOTE_NOTE } from "@/lib/site";
 
 const audience = [
   "Businesses that don't have a website yet",
@@ -28,7 +29,7 @@ export default function Hero() {
             <div className="w-10 h-1 bg-clay mb-10" aria-hidden="true" />
 
             <p className="text-clay text-xs font-medium uppercase tracking-[0.25em] mb-6">
-              A Two-Person Digital Studio
+              A Two-Person Digital Studio · Conejo Valley, CA
             </p>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium text-ivory leading-[1.1] tracking-tight mb-8">
@@ -56,7 +57,12 @@ export default function Hero() {
               </a>
             </div>
             <p className="text-sand/80 text-sm">
-              The first call is free, and you see the full price before we start.
+              Free first call. A working demo before you pay anything. The
+              full price in writing before we start.
+            </p>
+            <p className="text-sand/80 text-sm mt-2">
+              Based in {HOME_AREA}, working with businesses across{" "}
+              {REGION}. {REMOTE_NOTE}
             </p>
           </Reveal>
 
