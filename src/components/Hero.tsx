@@ -14,11 +14,12 @@ export default function Hero() {
     <section className="relative min-h-screen bg-charcoal flex flex-col justify-center overflow-hidden">
       {/* The pattern's own ground is #1d1c19, near-identical to charcoal, so it
           sits on the section with no visible edge. Kept low here because the
-          hero already carries the brand animation. Hidden on narrow screens,
-          where cover-cropping a 16:9 pattern leaves only a slice of the spine. */}
+          hero already carries the brand animation. On a phone the 16:9 pattern
+          crops to a slice of its centre, which reads as texture rather than a
+          circuit board, and that is fine. */}
       <PatternBackdrop
         align="animation"
-        className="mask-feather-x hidden opacity-40 sm:block"
+        className="mask-feather-x opacity-40"
       />
 
       <div className="relative max-w-6xl mx-auto w-full px-6 pt-32 pb-16">

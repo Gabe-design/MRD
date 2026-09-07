@@ -36,11 +36,11 @@ export default function PatternBackdrop({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Phones get the animation too. It is only fetched once its section is
+    // scrolled to, and pauses again when that section leaves, so the cost is
+    // one download and only for someone who reaches it.
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Below sm the section is narrow and the video is mostly cropped away, so
-    // the still earns its place and saves the download.
-    const narrow = window.matchMedia("(max-width: 639px)").matches;
-    setMode(reduced || narrow ? "static" : "motion");
+    setMode(reduced ? "static" : "motion");
   }, []);
 
   useEffect(() => {
