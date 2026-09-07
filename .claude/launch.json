@@ -8,6 +8,12 @@
       "port": 3000
     },
     {
+      "name": "mr-digital-3100",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "3100"],
+      "port": 3100
+    },
+    {
       "name": "mr-digital-static",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["--yes", "serve", "-l", "4321", "out"],
