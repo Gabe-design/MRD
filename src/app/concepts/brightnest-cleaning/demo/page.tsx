@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Estimator from "./Estimator";
+
 export const metadata: Metadata = {
   title: "BrightNest Cleaning — Live Concept Demo",
   description:
@@ -59,9 +61,6 @@ const faqs = [
     a: "This is a fictional demo. On a real site, this answer would state the company's insurance coverage, because clients ask.",
   },
 ];
-
-const inputCls =
-  "w-full bg-white border border-[#1F4E48]/20 text-[#1F4E48] placeholder-[#1F4E48]/40 px-4 py-3 text-sm focus:outline-none focus:border-[#2F8F83] focus:ring-1 focus:ring-[#2F8F83]";
 
 export default function BrightNestDemo() {
   return (
@@ -192,44 +191,10 @@ export default function BrightNestDemo() {
         <div className="max-w-xl mx-auto">
           <h2 className="text-3xl font-semibold mb-3 text-center">Get Your Quote</h2>
           <p className="text-white/70 text-center mb-8">
-            Three quick questions and we&apos;ll send a price the same day.
+            Tell us about the home and get a price on this page, before you
+            speak to anyone.
           </p>
-          <form className="bg-white rounded-xl p-8 space-y-4" style={{ color: ink }}>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <input className={inputCls} placeholder="Your name" aria-label="Your name" />
-              <input className={inputCls} placeholder="Email or phone" aria-label="Email or phone" />
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <select className={inputCls} defaultValue="" aria-label="Home size">
-                <option value="" disabled>Home size</option>
-                <option>1–2 bedrooms</option>
-                <option>3 bedrooms</option>
-                <option>4+ bedrooms</option>
-              </select>
-              <select className={inputCls} defaultValue="" aria-label="Service">
-                <option value="" disabled>Service</option>
-                {plans.map((p) => (
-                  <option key={p.name}>{p.name}</option>
-                ))}
-              </select>
-            </div>
-            <select className={inputCls} defaultValue="" aria-label="Frequency">
-              <option value="" disabled>How often?</option>
-              <option>One-off</option>
-              <option>Weekly</option>
-              <option>Fortnightly</option>
-            </select>
-            <button
-              type="button"
-              style={{ backgroundColor: teal }}
-              className="w-full text-white font-semibold px-6 py-4 rounded-full"
-            >
-              Request My Quote
-            </button>
-            <p className="text-xs opacity-50 text-center">
-              Demonstration form. This concept site doesn&apos;t send anything.
-            </p>
-          </form>
+          <Estimator />
         </div>
       </section>
 
