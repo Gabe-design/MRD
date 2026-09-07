@@ -4,8 +4,7 @@ type Founder = {
   initial: string;
   name: string;
   role: string;
-  /** Omitted while the published biography is still unwritten. */
-  bio?: string;
+  bio: string;
 };
 
 const founders: Founder[] = [
@@ -19,6 +18,7 @@ const founders: Founder[] = [
     initial: "R",
     name: "Gabriel Ross",
     role: "Co-founder · Design & Development",
+    bio: "I was born in Arizona and raised in Thousand Oaks, and I'm studying computer science at Moorpark College, with plans to go on to mechatronics engineering at CSU Channel Islands. At Moss & Ross I handle the design and the build: everything from the first layout to the code that ships. If you can picture what you want your site to do, I'll make it work.",
   },
 ];
 
@@ -51,16 +51,10 @@ export default function MeetUs() {
               <h3 className="font-semibold text-charcoal text-xl mb-1">
                 {f.name}
               </h3>
-              <p
-                className={`text-clay-dark text-xs font-medium uppercase tracking-[0.15em] ${
-                  f.bio ? "mb-4" : ""
-                }`}
-              >
+              <p className="text-clay-dark text-xs font-medium uppercase tracking-[0.15em] mb-4">
                 {f.role}
               </p>
-              {f.bio && (
-                <p className="text-charcoal/60 text-sm leading-relaxed">{f.bio}</p>
-              )}
+              <p className="text-charcoal/60 text-sm leading-relaxed">{f.bio}</p>
             </Reveal>
           ))}
         </div>

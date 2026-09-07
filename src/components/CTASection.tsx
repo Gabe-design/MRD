@@ -3,13 +3,12 @@
 import React, { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 const inputClasses =
   "w-full bg-ivory/5 border border-ivory/15 text-ivory placeholder-sand/50 px-4 py-3 text-sm focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition-colors";
 
 const selectClasses = `${inputClasses} appearance-none [&>option]:text-charcoal`;
-
-const CONTACT_EMAIL = "hello@mrd.com";
 
 export default function CTASection() {
   const [submitted, setSubmitted] = useState(false);
@@ -183,14 +182,21 @@ export default function CTASection() {
               >
                 <AlertCircle size={18} className="text-clay shrink-0 mt-0.5" />
                 <p className="text-sand text-sm">
-                  {error} Please email us at{" "}
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="text-ivory underline"
-                  >
-                    {CONTACT_EMAIL}
-                  </a>{" "}
-                  and we&apos;ll pick it up from there.
+                  {error}{" "}
+                  {CONTACT_EMAIL ? (
+                    <>
+                      Please email us at{" "}
+                      <a
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        className="text-ivory underline"
+                      >
+                        {CONTACT_EMAIL}
+                      </a>{" "}
+                      and we&apos;ll pick it up from there.
+                    </>
+                  ) : (
+                    <>Please try again in a moment.</>
+                  )}
                 </p>
               </div>
             )}

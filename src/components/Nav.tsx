@@ -8,6 +8,7 @@ const links = [
   { label: "Process", href: "#process" },
   { label: "What's Included", href: "#included" },
   { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export default function Nav() {
