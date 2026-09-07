@@ -56,7 +56,9 @@ export default function Concepts() {
           {concepts.map((c, i) => (
             <Reveal key={c.name} delay={i * 90} className="flex">
               <article className="border border-charcoal/10 bg-white p-6 flex flex-col w-full">
-              <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-charcoal/50 border border-charcoal/15 self-start px-2.5 py-1 mb-5">
+              {/* The fictional-business disclosure should not be the smallest
+                  text on the page. */}
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-charcoal/60 border border-charcoal/15 self-start px-2.5 py-1 mb-5">
                 Self-initiated concept · Fictional business
               </p>
 

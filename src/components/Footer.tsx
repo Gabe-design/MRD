@@ -31,10 +31,10 @@ export default function Footer() {
               Polished, practical websites for local businesses, designed and
               built by the two of us.
             </p>
-            <p className="mt-4 text-sand text-sm">
+            <p className="mt-2 text-sand text-sm">
               <a
                 href="mailto:hello@mrd.com"
-                className="hover:text-clay transition-colors"
+                className="inline-flex min-h-[44px] items-center hover:text-clay transition-colors"
               >
                 hello@mrd.com
               </a>
@@ -44,12 +44,14 @@ export default function Footer() {
           {Object.entries(links).map(([group, items]) => (
             <div key={group}>
               <h4 className="text-ivory font-medium text-xs uppercase tracking-[0.2em] mb-4">{group}</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-1">
                 {items.map((item) => (
                   <li key={item.label}>
+                    {/* min-h keeps these comfortably tappable on a phone; as
+                        plain inline links they were about 17px tall. */}
                     <a
                       href={item.href}
-                      className="text-sand hover:text-ivory text-sm transition-colors"
+                      className="inline-flex min-h-[44px] items-center text-sand hover:text-ivory text-sm transition-colors"
                     >
                       {item.label}
                     </a>
