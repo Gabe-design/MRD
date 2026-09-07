@@ -14,22 +14,22 @@ const faqs = [
   },
   {
     q: "How long does it take?",
-    a: `It depends on how many pages the site needs and how quickly you can get us your content, which is usually the longest pole. We agree a delivery date before we start and we hold ourselves to it: if we miss the agreed date, the next milestone is on us.`,
+    a: `It depends on how many pages the site needs and how quickly you can get us your content, which is usually the part that takes longest. We agree a delivery date before we start and we hold ourselves to it: if we miss the agreed date, the next milestone is on us.`,
   },
   {
     q: "Do you only work with businesses near you?",
-    a: `No. We are based in ${HOME_AREA} and most of our work is across ${REGION}, so we can meet you in person if that helps. But the work itself is remote, and we already have clients outside California. The process is identical either way.`,
+    a: `No. We are based in ${HOME_AREA} and work across ${REGION}, so we can meet you in person if that helps. The build itself is remote, so we can do it for a business anywhere in the country just as easily. The process is identical either way.`,
   },
   {
     q: "I don't have a website at all. Where do we start?",
-    a: `Exactly where everyone else does: a free call about how your business actually works. You do not need a domain, a logo, or any idea of what you want the site to look like. Bringing nothing is normal, and it is easier than untangling something half-finished.`,
+    a: `Exactly where everyone else does: a free call about how your business works. You do not need a domain, a logo, or any idea of what you want the site to look like. Bringing nothing is normal, and it is easier than untangling something half-finished.`,
   },
   {
     q: "What do I need to give you?",
     a: `Your logo if you have one, photos of your work, and your business details: services, prices, hours, and the areas you cover. We take it from there, writing the structure and placing the content so it reads well. If you do not have photos, we will tell you what to take.`,
   },
   {
-    q: "Who will I actually be dealing with?",
+    q: "Who will I be dealing with?",
     a: `One of the two of us, from the first call to launch and after. There is no account manager in the middle and nothing gets handed to a contractor you have never spoken to. You will always be talking to the person doing the work.`,
   },
   {
@@ -42,15 +42,15 @@ const faqs = [
   },
   {
     q: "What happens after the site launches?",
-    a: `We stay available for updates, changes, and fixes through a support arrangement we agree together before the project starts, so you know the cost of that up front too. Your site does not become your problem the day it goes live.`,
+    a: `You will not be left maintaining it alone. We stay available for updates, changes, and fixes through a support arrangement we agree together before the project starts, so you know that cost up front too.`,
   },
   {
     q: "Will my site show up on Google?",
-    a: `We build in the things search engines actually check: correct page titles and descriptions, clean structure, and fast load times. We will also walk you through setting up your Google Business Profile, which is what puts a local business in the map results. Nobody can promise a specific ranking, and you should be wary of anyone who does.`,
+    a: `We build in the things search engines check: correct page titles and descriptions, clean structure, and fast load times. We will also walk you through setting up your Google Business Profile, which is what puts a local business in the map results. Nobody can promise a specific ranking, and you should be wary of anyone who does.`,
   },
   {
     q: "Your portfolio is concept sites. Have you built for real businesses?",
-    a: `We would rather show you three complete builds we are proud of than a page of logos. The concept sites are real, working websites for businesses we invented, and every page is clickable, so you can judge the craft directly rather than take our word for it. Ask us on the call and we will talk you through the client work as well.`,
+    a: `Not yet, and we would rather tell you that than pad the page with logos. The concept sites are real, working websites for businesses we invented, and every page is clickable, so you can judge the craft yourself instead of taking our word for it. You would be among our first clients, which is part of why we build you a working demo before you pay anything.`,
   },
 ];
 

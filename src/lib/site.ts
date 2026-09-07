@@ -6,8 +6,12 @@
 
 export const SITE_NAME = "Moss & Ross";
 
-/** Used for canonical and Open Graph URLs. */
-export const SITE_URL = "https://mossandross.com";
+/**
+ * Used for canonical and Open Graph URLs, so it has to be the domain we
+ * actually serve from. Pointing it anywhere else tells search engines the
+ * content belongs to that other site.
+ */
+export const SITE_URL = "https://mrdstudios.tech";
 
 /** Where we are, in the phrasing used in body copy. */
 export const HOME_AREA = "the Conejo Valley";
