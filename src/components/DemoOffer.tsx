@@ -67,10 +67,17 @@ export default function DemoOffer() {
       if (window.scrollY / scrollable < TRIGGER_RATIO) return;
 
       // Someone already at the form is converting. Interrupting them with an
-      // offer to convert is the one moment this cannot help.
-      const contact = document.getElementById("contact");
-      if (contact && contact.getBoundingClientRect().top < window.innerHeight) {
-        return;
+      // offer to convert is the one moment this cannot help. Bypassed in
+      // development, where scrolling straight to the bottom should still show
+      // the dialog rather than silently skip it.
+      if (!ALWAYS_SHOW) {
+        const contact = document.getElementById("contact");
+        if (
+          contact &&
+          contact.getBoundingClientRect().top < window.innerHeight
+        ) {
+          return;
+        }
       }
 
       stop();
