@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import BrandIntro from "@/components/BrandIntro";
+import PatternBackdrop from "@/components/PatternBackdrop";
 import Reveal from "@/components/Reveal";
 
 const audience = [
@@ -10,8 +11,17 @@ const audience = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-charcoal flex flex-col justify-center">
-      <div className="max-w-6xl mx-auto w-full px-6 pt-32 pb-16">
+    <section className="relative min-h-screen bg-charcoal flex flex-col justify-center overflow-hidden">
+      {/* The pattern's own ground is #1d1c19, near-identical to charcoal, so it
+          sits on the section with no visible edge. Kept low here because the
+          hero already carries the brand animation. Hidden on narrow screens,
+          where cover-cropping a 16:9 pattern leaves only a slice of the spine. */}
+      <PatternBackdrop
+        align="animation"
+        className="mask-feather-x hidden opacity-40 sm:block"
+      />
+
+      <div className="relative max-w-6xl mx-auto w-full px-6 pt-32 pb-16">
         <div className="grid gap-y-14 mb-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-x-16 lg:gap-y-12">
           <Reveal className="lg:col-start-1 lg:row-start-1">
             <div className="w-10 h-1 bg-clay mb-10" aria-hidden="true" />

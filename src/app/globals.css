@@ -98,6 +98,18 @@ body {
     );
   }
 
+  /* Softens the backdrop pattern into the footer at the bottom of the section.
+     The form itself gets its own charcoal panel rather than relying on this. */
+  .pattern-fade-bottom {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 65%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to bottom, #000 0%, #000 65%, transparent 100%);
+  }
+
   .mask-feather-x {
     -webkit-mask-image: linear-gradient(
       to right,

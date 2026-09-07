@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import PatternBackdrop from "@/components/PatternBackdrop";
 
 const inputClasses =
   "w-full bg-ivory/5 border border-ivory/15 text-ivory placeholder-sand/50 px-4 py-3 text-sm focus:outline-none focus:border-clay focus:ring-1 focus:ring-clay transition-colors";
@@ -43,8 +44,12 @@ export default function CTASection() {
   }
 
   return (
-    <section id="contact" className="bg-charcoal py-24 px-6">
-      <div className="max-w-2xl mx-auto text-center">
+    <section id="contact" className="relative bg-charcoal py-24 px-6 overflow-hidden">
+      {/* Stronger than the hero, which already carries the brand animation.
+          Faded out down the section so the form sits on clean charcoal. */}
+      <PatternBackdrop className="pattern-fade-bottom opacity-45" />
+
+      <div className="relative max-w-2xl mx-auto text-center">
         <Reveal>
           <p className="text-clay font-medium text-xs uppercase tracking-[0.25em] mb-4">
             Project Inquiries
@@ -58,7 +63,7 @@ export default function CTASection() {
         </Reveal>
 
         {submitted ? (
-          <div className="bg-ivory/5 border border-ivory/15 p-10 text-center">
+          <div className="bg-charcoal/80 backdrop-blur-sm border border-ivory/15 p-10 text-center">
             <CheckCircle size={48} className="text-clay mx-auto mb-4" />
             <h3 className="text-ivory text-xl font-semibold mb-2">
               We&apos;ll be in touch soon!
@@ -70,7 +75,7 @@ export default function CTASection() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="bg-ivory/5 border border-ivory/10 p-8 text-left space-y-4"
+            className="bg-charcoal/80 backdrop-blur-sm border border-ivory/15 p-8 text-left space-y-4"
             noValidate
           >
             <div className="grid sm:grid-cols-2 gap-4">
