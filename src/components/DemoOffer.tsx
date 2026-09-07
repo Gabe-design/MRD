@@ -10,7 +10,16 @@ const SUPPRESS_DAYS = 30;
 /** How far down the page counts as "reading it properly". */
 const TRIGGER_RATIO = 0.6;
 
+/**
+ * In development the offer opens on every reload, ignoring the 30-day
+ * suppression, so it can be looked at without clearing storage between passes.
+ * NODE_ENV is inlined at build time, so this is a constant false in a
+ * production bundle and the suppression behaves normally there.
+ */
+const ALWAYS_SHOW = process.env.NODE_ENV !== "production";
+
 function recentlySeen() {
+  if (ALWAYS_SHOW) return false;
   try {
     const seen = window.localStorage.getItem(STORAGE_KEY);
     if (!seen) return false;
@@ -24,6 +33,7 @@ function recentlySeen() {
 }
 
 function remember() {
+  if (ALWAYS_SHOW) return;
   try {
     window.localStorage.setItem(STORAGE_KEY, String(Date.now()));
   } catch {
