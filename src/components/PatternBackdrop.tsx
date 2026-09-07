@@ -49,19 +49,45 @@ export default function PatternBackdrop({
     if (!video) return;
 
     video.muted = true;
-    video.play().catch(() => setMode("static"));
 
-    // Decoding a looping video nobody can see is wasted battery, and there are
-    // two of these on the page.
+    let onScreen = false;
+    let hasPlayed = false;
+    const markPlayed = () => {
+      hasPlayed = true;
+    };
+    video.addEventListener("playing", markPlayed);
+
+    // Playback follows both conditions the browser cares about. Chrome refuses
+    // to autoplay a video outside the viewport, so calling play() on mount
+    // would fail for any backdrop below the fold and wrongly downgrade it to
+    // the still. Chrome also pauses media when the tab is backgrounded, and
+    // nothing resumes it on return unless we ask.
+    const sync = () => {
+      if (!onScreen || document.hidden) {
+        video.pause();
+        return;
+      }
+      video.play().catch(() => {
+        // A refusal only means this device won't play it if it never started.
+        if (!hasPlayed) setMode("static");
+      });
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
+        onScreen = entry.isIntersecting;
+        sync();
       },
       { threshold: 0 },
     );
     observer.observe(video);
-    return () => observer.disconnect();
+    document.addEventListener("visibilitychange", sync);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      video.removeEventListener("playing", markPlayed);
+    };
   }, [mode]);
 
   const placement = `${LAYER} ${ALIGNMENT[align]}`;
