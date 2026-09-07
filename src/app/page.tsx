@@ -8,6 +8,7 @@ import MeetUs from "@/components/MeetUs";
 import FAQ from "@/components/FAQ";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import DemoOffer from "@/components/DemoOffer";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <CTASection />
       </main>
       <Footer />
+      <DemoOffer />
     </>
   );
 }
