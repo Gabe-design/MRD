@@ -9,6 +9,7 @@ const links = [
   { label: "Pricing", href: "/pricing" },
   { label: "Process", href: "#process" },
   { label: "What's Included", href: "#included" },
+  { label: "Community", href: "/community" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
