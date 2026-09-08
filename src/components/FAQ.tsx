@@ -1,16 +1,22 @@
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { STARTING_PRICE } from "@/lib/pricing";
 import { HOME_AREA, REGION } from "@/lib/site";
 
 /**
  * Answers are deliberately grounded in promises made elsewhere on the page:
- * the commitments in WhatsIncluded and the steps in HowItWorks. Nothing here
- * introduces a number the rest of the site does not already stand behind.
+ * the commitments in WhatsIncluded, the steps in HowItWorks, and the published
+ * figures in lib/pricing. Any number quoted here has to match that file, which
+ * is why the starting price is read from it rather than typed twice.
+ *
+ * Answers stay plain strings because they are also the text of the FAQPage
+ * schema below. Links belong under the list, not inside an answer.
  */
 const faqs = [
   {
     q: "How much does a website cost?",
-    a: `Every project is quoted on its own, because a five-page site for a barbershop and a site with a booking system are not the same job. The first call is free, and you get the full price in writing before any work starts. What we quote is what you pay, and there are no invoices you did not see coming.`,
+    a: `Websites start at ${STARTING_PRICE} for one to three pages, and most projects land in the middle tier at $1,650 for five to seven. Sites that need booking or custom features start at $2,900. Every price is published on our pricing page, so you do not have to book a call to hear a number. You get the full cost in writing before any work starts, and what we quote is what you pay.`,
   },
   {
     q: "How long does it take?",
@@ -112,6 +118,15 @@ export default function FAQ() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-10 text-center">
+          <Link
+            href="/pricing"
+            className="inline-flex items-center gap-2 text-charcoal font-semibold text-sm uppercase tracking-[0.15em] border-b-2 border-clay pb-1 hover:text-clay transition-colors"
+          >
+            See the full pricing <ArrowRight size={16} />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

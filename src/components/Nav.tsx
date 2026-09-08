@@ -1,15 +1,47 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "Concepts", href: "#concepts" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Process", href: "#process" },
   { label: "What's Included", href: "#included" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
+
+/**
+ * The nav mixes in-page anchors with real routes. Anchors stay plain <a>, so
+ * the smooth scroll is left alone; routes go through Link to prefetch and
+ * navigate client-side.
+ */
+function NavLink({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string;
+  className: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) {
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a href={href} className={className} onClick={onClick}>
+      {children}
+    </a>
+  );
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -51,12 +83,12 @@ export default function Nav() {
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.href}>
-              <a
+              <NavLink
                 href={l.href}
                 className="text-sand hover:text-ivory text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-200"
               >
                 {l.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -82,13 +114,13 @@ export default function Nav() {
           <ul className="flex flex-col gap-4 pt-4">
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                <NavLink
                   href={l.href}
                   className="text-sand hover:text-ivory text-sm font-medium uppercase tracking-[0.15em] transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
-                </a>
+                </NavLink>
               </li>
             ))}
             <li>
