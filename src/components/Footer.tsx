@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { CITY_SLUGS } from "@/lib/cities";
 import { CONTACT_EMAIL, HOME_AREA, REMOTE_NOTE, SERVICE_AREA } from "@/lib/site";
 
 const year = new Date().getFullYear();
@@ -82,8 +84,28 @@ export default function Footer() {
           <h4 className="text-ivory font-medium text-xs uppercase tracking-[0.2em] mb-4">
             Areas We Serve
           </h4>
+          {/* Towns with a page of their own become links; the rest stay as
+              text. Listing a town we serve is honest either way, but only the
+              ones with something written about them are worth a click. */}
           <p className="text-sand text-sm leading-relaxed max-w-3xl">
-            {SERVICE_AREA.join(" · ")}
+            {SERVICE_AREA.map((town, i) => {
+              const slug = CITY_SLUGS.get(town);
+              return (
+                <span key={town}>
+                  {i > 0 && <span aria-hidden="true"> · </span>}
+                  {slug ? (
+                    <Link
+                      href={`/web-design/${slug}`}
+                      className="hover:text-ivory underline decoration-ivory/25 underline-offset-4 transition-colors"
+                    >
+                      {town}
+                    </Link>
+                  ) : (
+                    town
+                  )}
+                </span>
+              );
+            })}
           </p>
           <p className="text-sand/70 text-sm mt-3 max-w-3xl">
             Based in {HOME_AREA}. {REMOTE_NOTE}
