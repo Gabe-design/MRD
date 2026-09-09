@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BrandIntro from "@/components/BrandIntro";
 import PatternBackdrop from "@/components/PatternBackdrop";
 import Reveal from "@/components/Reveal";
+import { STARTING_PRICE } from "@/lib/pricing";
 import { HOME_AREA, REGION, REMOTE_NOTE } from "@/lib/site";
 
 const audience = [
@@ -32,14 +34,18 @@ export default function Hero() {
               A Two-Person Digital Studio · Conejo Valley, CA
             </p>
 
+            {/* The offer leads, rather than a description of the category.
+                Every studio in the county can claim polished and practical;
+                only the ones building on spec can say this, so it is the one
+                line that does not work in a competitor's mouth. */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium text-ivory leading-[1.1] tracking-tight mb-8">
-              Polished, practical websites for local businesses.
+              See your new website before you pay anything.
             </h1>
 
             <p className="text-lg sm:text-xl text-sand max-w-2xl mb-12 leading-relaxed">
-              We design and build websites that make your business easy to find
-              and easy to contact. We handle everything from the first
-              conversation to launch.
+              We build local businesses a real, working demo first. You open it
+              on your own phone, click through it, and decide from there. If it
+              isn&apos;t right, you don&apos;t pay.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
@@ -47,18 +53,18 @@ export default function Hero() {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200"
               >
-                Discuss Your Project <ArrowRight size={16} />
+                Start With a Free Demo <ArrowRight size={16} />
               </a>
-              <a
-                href="#concepts"
+              <Link
+                href="/pricing"
                 className="inline-flex items-center justify-center gap-2 text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] border border-ivory/25 hover:border-ivory/50 transition-colors duration-200"
               >
-                Explore the Concepts
-              </a>
+                See Pricing
+              </Link>
             </div>
             <p className="text-sand/80 text-sm">
-              Free first call. A working demo before you pay anything. The
-              full price in writing before we start.
+              Websites from {STARTING_PRICE}. The full price in writing before
+              we start, and no invoice you did not see coming.
             </p>
             <p className="text-sand/80 text-sm mt-2">
               Based in {HOME_AREA}, working with businesses across{" "}
