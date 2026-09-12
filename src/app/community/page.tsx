@@ -158,7 +158,7 @@ export default function CommunityTrack() {
               the bright part of the pattern. */}
           <PatternBackdrop
             align="centre"
-            className="mask-feather-x hidden opacity-20 sm:block"
+            className="mask-feather-x opacity-20"
           />
           <div
             aria-hidden="true"
