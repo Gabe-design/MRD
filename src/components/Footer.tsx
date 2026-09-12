@@ -11,6 +11,7 @@ const links = {
     { label: "What's Included", href: "#included" },
     { label: "About", href: "#about" },
     { label: "FAQ", href: "#faq" },
+    { label: "Community Track", href: "/community" },
     { label: "Contact", href: "#contact" },
   ],
   "Concept Sites": [
