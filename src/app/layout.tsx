@@ -49,6 +49,9 @@ const businessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: SITE_NAME,
+  /* The domain is the monogram of the full name; saying so here lets a
+     search for "MRD Studios" resolve to the same entity as "Moss & Ross". */
+  alternateName: ["Moss & Ross Digital Studios", "MRD Studios"],
   url: SITE_URL,
   description,
   areaServed: [

@@ -29,7 +29,7 @@ export default function Footer() {
             <a href="#" className="text-ivory font-semibold text-sm uppercase tracking-[0.25em]">
               Moss <span className="text-clay">&amp;</span> Ross
               <span className="block mt-1 text-xs font-normal italic normal-case text-sand tracking-normal">
-                Digital Studio
+                Digital Studios
               </span>
             </a>
             <p className="mt-4 text-sand text-sm leading-relaxed max-w-xs">
@@ -114,7 +114,7 @@ export default function Footer() {
 
         <div className="border-t border-ivory/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sand/70 text-sm">
-            &copy; {year} Moss &amp; Ross. All rights reserved.
+            &copy; {year} Moss &amp; Ross Digital Studios. All rights reserved.
           </p>
           <p className="text-sand/50 text-xs">
             Concept sites shown are fictional businesses, labeled as
