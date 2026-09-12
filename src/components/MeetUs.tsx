@@ -18,7 +18,7 @@ const founders: Founder[] = [
     initial: "R",
     name: "Gabriel Ross",
     role: "Co-founder · Design & Development",
-    bio: "I was born in Arizona and raised in Thousand Oaks, and I'm studying computer science at Moorpark College, with plans to go on to mechatronics engineering at CSU Channel Islands. At Moss & Ross I handle the design and the build: everything from the first layout to the code that ships. If you can picture what you want your site to do, I'll make it work.",
+    bio: "I was born in Arizona and raised in Thousand Oaks, and I'm studying computer science at Moorpark College. At Moss & Ross I handle the design and the build: everything from the first layout to the code that ships. If you can picture what you want your site to do, I'll make it work.",
   },
 ];
 
