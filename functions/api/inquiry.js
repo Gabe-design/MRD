@@ -1,8 +1,8 @@
 // Cloudflare Pages Function: POST /api/inquiry
 //
 // Deployed automatically by Cloudflare Pages from this functions/ directory.
-// It does not exist under `next dev`, so the form falls back to the mailto
-// link locally.
+// It does not exist under `next dev`, so a local submission gets the form's
+// "That didn't send" error. Only the deployed site can send.
 //
 // Environment variables (set in Cloudflare: Pages project > Settings >
 // Environment variables):
@@ -113,14 +113,20 @@ export async function onRequestPost({ request, env }) {
   } catch {
     return json({ error: "Could not read that submission." }, 400);
   }
+  // `null`, a number, or a string all parse as JSON but are not a form.
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return json({ error: "Could not read that submission." }, 400);
+  }
 
   // Honeypot: a real person never fills a field they cannot see. Answer 200 so
-  // a bot cannot tell it was rejected.
-  if (clean(payload.company)) return json({ ok: true });
+  // a bot cannot tell it was rejected. The field name matches InquiryForm and
+  // means nothing on purpose, so browser autofill leaves it alone.
+  if (clean(payload.ref_code_2)) return json({ ok: true });
 
   // Anything that is not the community track is a demo request, so a
   // submission with no track at all still lands where it always did.
-  const track = TRACKS[clean(payload.track)] || TRACKS.demo;
+  const trackName = clean(payload.track);
+  const track = Object.hasOwn(TRACKS, trackName) ? TRACKS[trackName] : TRACKS.demo;
   const f = Object.fromEntries(
     track.fields.map((key) => [key, clean(payload[key])]),
   );

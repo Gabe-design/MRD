@@ -37,6 +37,8 @@ export default function InquiryForm({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const FALLBACK = "That didn't send.";
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
@@ -51,13 +53,22 @@ export default function InquiryForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const body = await response.json().catch(() => ({}));
+      const body: unknown = await response.json().catch(() => ({}));
       if (!response.ok) {
-        throw new Error(body.error || "That didn't send.");
+        // Only a message the function wrote is fit to show. Anything else
+        // (a 404 page under next dev, an HTML error) gets the plain fallback.
+        const message =
+          body && typeof body === "object" && "error" in body && typeof body.error === "string"
+            ? body.error
+            : FALLBACK;
+        setError(message);
+        return;
       }
       setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "That didn't send.");
+    } catch {
+      // A failed fetch throws a browser string ("Failed to fetch"), which is
+      // not something a visitor should read.
+      setError(FALLBACK);
     } finally {
       setLoading(false);
     }
@@ -83,12 +94,15 @@ export default function InquiryForm({
 
       {children}
 
-      {/* Honeypot: hidden from people, tempting to bots. */}
+      {/* Honeypot: hidden from people, tempting to bots. The name is
+          deliberately meaningless. It used to be "company", which is a word
+          browser autofill maps to the organization field, and an autofilled
+          honeypot drops a real submission behind a success screen. */}
       <div className="hidden" aria-hidden="true">
-        <label htmlFor="company">Company (leave this blank)</label>
+        <label htmlFor="ref_code_2">Leave this field empty</label>
         <input
-          id="company"
-          name="company"
+          id="ref_code_2"
+          name="ref_code_2"
           type="text"
           tabIndex={-1}
           autoComplete="off"

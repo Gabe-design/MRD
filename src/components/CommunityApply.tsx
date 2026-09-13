@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import PatternBackdrop from "@/components/PatternBackdrop";
 import InquiryForm from "@/components/InquiryForm";
-import { inputClasses } from "@/components/formStyles";
+import { FIELD_LIMIT, inputClasses } from "@/components/formStyles";
 
 /**
  * The community track's own application, on its own page. It used to send
@@ -133,6 +133,7 @@ export default function CommunityApply() {
               name="process"
               rows={4}
               required
+              maxLength={FIELD_LIMIT}
               placeholder="Intake. Every new family fills out a paper form, someone retypes it into a spreadsheet, and the same questions come in by phone and email all week. It's most of one person's Mondays."
               className={`${inputClasses} resize-none`}
             />

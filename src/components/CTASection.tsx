@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import PatternBackdrop from "@/components/PatternBackdrop";
 import InquiryForm from "@/components/InquiryForm";
-import { inputClasses, selectClasses } from "@/components/formStyles";
+import { FIELD_LIMIT, inputClasses, selectClasses } from "@/components/formStyles";
 import { BUILD_TIERS } from "@/lib/pricing";
 
 /**
@@ -128,6 +128,7 @@ export default function CTASection() {
               name="services"
               rows={4}
               required
+              maxLength={FIELD_LIMIT}
               placeholder="Residential plumbing and water heaters, mostly Thousand Oaks and Newbury Park. Emergency calls are a big part of it. Been going since 2015."
               className={`${inputClasses} resize-none`}
             />
