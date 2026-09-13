@@ -41,12 +41,20 @@ export async function onRequestPost({ request, env }) {
   const name = clean(payload.name);
   const business = clean(payload.business);
   const email = clean(payload.email);
-  const budget = clean(payload.budget);
-  const timing = clean(payload.timing);
-  const message = clean(payload.message);
+  const phone = clean(payload.phone);
+  const services = clean(payload.services);
+  const website = clean(payload.website);
+  const tier = clean(payload.tier);
+  const style = clean(payload.style);
 
-  if (!name || !business || !email) {
-    return json({ error: "Name, business and email are all required." }, 400);
+  // Services is required alongside the contact details: it is the one field
+  // a demo cannot be built without, and a request missing it would only
+  // bounce back as a question.
+  if (!name || !business || !email || !services) {
+    return json(
+      { error: "Name, business, email and what your business does are all required." },
+      400,
+    );
   }
   if (!EMAIL_PATTERN.test(email)) {
     return json({ error: "That email address does not look right." }, 400);
@@ -61,15 +69,19 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "The form is not connected yet." }, 503);
   }
 
+  // Laid out as a brief someone can build from top to bottom: who they are,
+  // how to reach them, then what to build and what it should feel like.
   const body = [
     `Name:     ${name}`,
     `Business: ${business}`,
     `Email:    ${email}`,
-    `Budget:   ${budget || "not given"}`,
-    `Timing:   ${timing || "not given"}`,
+    `Phone:    ${phone || "not given"}`,
+    `Website:  ${website || "none"}`,
+    `Tier:     ${tier || "not chosen"}`,
+    `Style:    ${style || "not chosen"}`,
     "",
-    "Project goals:",
-    message || "(none given)",
+    "What the business does:",
+    services,
   ].join("\n");
 
   const sent = await fetch("https://api.resend.com/emails", {
@@ -82,7 +94,7 @@ export async function onRequestPost({ request, env }) {
       from: env.INQUIRY_FROM || "Moss & Ross <onboarding@resend.dev>",
       to: [to],
       reply_to: email,
-      subject: `Project inquiry: ${business}`,
+      subject: `Demo request: ${business}`,
       text: body,
     }),
   });

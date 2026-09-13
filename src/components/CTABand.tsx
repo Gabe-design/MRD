@@ -17,7 +17,7 @@ export default function CTABand() {
           href="#contact"
           className="inline-flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200 shrink-0"
         >
-          Discuss Your Project <ArrowRight size={16} />
+          Start With a Free Demo <ArrowRight size={16} />
         </a>
       </div>
     </section>
