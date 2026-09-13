@@ -55,6 +55,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       priority: 0.9,
     },
+    /**
+     * The community track page, but not its template-preview route. That
+     * route is placeholder content for a nonprofit that does not exist,
+     * marked noindex and linked from nowhere on purpose.
+     */
+    {
+      url: `${SITE_URL}/community/`,
+      lastModified,
+      priority: 0.8,
+    },
     ...CITIES.map((city) => ({
       url: `${SITE_URL}/web-design/${city.slug}/`,
       lastModified,
