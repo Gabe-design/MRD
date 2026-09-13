@@ -73,19 +73,36 @@ export default function CommunityApply() {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-ivory/80 mb-1.5">
-              Email <span className="text-clay" aria-hidden="true">*</span>
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              placeholder="maria@yourorganization.org"
-              className={inputClasses}
-            />
+          {/* Whichever they actually answer. Requiring an email assumes a
+              preference a lot of directors do not have, and a phone number
+              from someone who lives on their phone beats an inbox they check
+              on Fridays. The function works out which is which. */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="contact" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                Best way to reach you <span className="text-clay" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="contact"
+                name="contact"
+                type="text"
+                required
+                placeholder="Email or phone, whichever you answer"
+                className={inputClasses}
+              />
+            </div>
+            <div>
+              <label htmlFor="contact2" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                A second way <span className="text-sand/60 font-normal">(optional)</span>
+              </label>
+              <input
+                id="contact2"
+                name="contact2"
+                type="text"
+                placeholder="The other one, if you'd like to give both"
+                className={inputClasses}
+              />
+            </div>
           </div>
 
           {/* One line, on purpose. The mission is context; the next field is
