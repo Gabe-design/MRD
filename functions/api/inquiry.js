@@ -26,6 +26,60 @@ function clean(value) {
   return typeof value === "string" ? value.trim().slice(0, FIELD_LIMIT) : "";
 }
 
+const or = (value, fallback) => value || fallback;
+
+/**
+ * One entry per form on the site. Each says which fields it reads, which of
+ * them it cannot do without, how to subject the email, and how to lay the
+ * body out so it reads as something the two of us can act on top to bottom.
+ *
+ * The forms send a hidden `track` naming their entry. Keeping both lanes in
+ * one function means one honeypot, one email pipeline, and one place to
+ * look when something does not arrive.
+ */
+const TRACKS = {
+  // The studio's demo request: a brief we can build a first version from.
+  demo: {
+    fields: ["name", "business", "email", "phone", "services", "website", "tier", "style"],
+    required: ["name", "business", "email", "services"],
+    missing: "Name, business, email and what your business does are all required.",
+    subject: (f) => `Demo request: ${f.business}`,
+    body: (f) => [
+      `Name:     ${f.name}`,
+      `Business: ${f.business}`,
+      `Email:    ${f.email}`,
+      `Phone:    ${or(f.phone, "not given")}`,
+      `Website:  ${or(f.website, "none")}`,
+      `Tier:     ${or(f.tier, "not chosen")}`,
+      `Style:    ${or(f.style, "not chosen")}`,
+      "",
+      "What the business does:",
+      f.services,
+    ],
+  },
+
+  // The community track's application: what is eating a nonprofit's week.
+  community: {
+    fields: ["name", "organization", "email", "mission", "process", "owner"],
+    required: ["name", "organization", "email", "mission", "process"],
+    missing:
+      "Name, organization, email, what you do and the process that costs the most time are all required.",
+    subject: (f) => `Community track application: ${f.organization}`,
+    body: (f) => [
+      `Name:         ${f.name}`,
+      `Organization: ${f.organization}`,
+      `Email:        ${f.email}`,
+      `Would own it: ${or(f.owner, "not sure yet")}`,
+      "",
+      "What the organization does:",
+      f.mission,
+      "",
+      "The process that costs the most staff time:",
+      f.process,
+    ],
+  },
+};
+
 export async function onRequestPost({ request, env }) {
   let payload;
   try {
@@ -38,25 +92,17 @@ export async function onRequestPost({ request, env }) {
   // a bot cannot tell it was rejected.
   if (clean(payload.company)) return json({ ok: true });
 
-  const name = clean(payload.name);
-  const business = clean(payload.business);
-  const email = clean(payload.email);
-  const phone = clean(payload.phone);
-  const services = clean(payload.services);
-  const website = clean(payload.website);
-  const tier = clean(payload.tier);
-  const style = clean(payload.style);
+  // Anything that is not the community track is a demo request, so a
+  // submission with no track at all still lands where it always did.
+  const track = TRACKS[clean(payload.track)] || TRACKS.demo;
+  const f = Object.fromEntries(
+    track.fields.map((key) => [key, clean(payload[key])]),
+  );
 
-  // Services is required alongside the contact details: it is the one field
-  // a demo cannot be built without, and a request missing it would only
-  // bounce back as a question.
-  if (!name || !business || !email || !services) {
-    return json(
-      { error: "Name, business, email and what your business does are all required." },
-      400,
-    );
+  if (track.required.some((key) => !f[key])) {
+    return json({ error: track.missing }, 400);
   }
-  if (!EMAIL_PATTERN.test(email)) {
+  if (!EMAIL_PATTERN.test(f.email)) {
     return json({ error: "That email address does not look right." }, 400);
   }
 
@@ -69,20 +115,7 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "The form is not connected yet." }, 503);
   }
 
-  // Laid out as a brief someone can build from top to bottom: who they are,
-  // how to reach them, then what to build and what it should feel like.
-  const body = [
-    `Name:     ${name}`,
-    `Business: ${business}`,
-    `Email:    ${email}`,
-    `Phone:    ${phone || "not given"}`,
-    `Website:  ${website || "none"}`,
-    `Tier:     ${tier || "not chosen"}`,
-    `Style:    ${style || "not chosen"}`,
-    "",
-    "What the business does:",
-    services,
-  ].join("\n");
+  const body = track.body(f).join("\n");
 
   const sent = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -93,8 +126,8 @@ export async function onRequestPost({ request, env }) {
     body: JSON.stringify({
       from: env.INQUIRY_FROM || "Moss & Ross <onboarding@resend.dev>",
       to: [to],
-      reply_to: email,
-      subject: `Demo request: ${business}`,
+      reply_to: f.email,
+      subject: track.subject(f),
       text: body,
     }),
   });

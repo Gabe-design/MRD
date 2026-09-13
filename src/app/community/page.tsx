@@ -9,6 +9,7 @@ import {
   Inbox,
   Target,
 } from "lucide-react";
+import CommunityApply from "@/components/CommunityApply";
 import PatternBackdrop from "@/components/PatternBackdrop";
 import Reveal from "@/components/Reveal";
 import { SITE_NAME } from "@/lib/site";
@@ -141,12 +142,12 @@ export default function CommunityTrack() {
           >
             <ArrowLeft size={14} /> Moss &amp; Ross
           </Link>
-          <Link
-            href="/#contact"
+          <a
+            href="#apply"
             className="inline-flex items-center gap-2 bg-clay hover:bg-clay-dark text-ivory text-xs font-semibold uppercase tracking-[0.15em] px-4 py-2 transition-colors"
           >
             Apply as a Partner
-          </Link>
+          </a>
         </div>
       </header>
 
@@ -184,12 +185,12 @@ export default function CommunityTrack() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-4">
-                <Link
-                  href="/#contact"
+                <a
+                  href="#apply"
                   className="inline-flex items-center justify-center gap-2 bg-clay hover:bg-clay-dark text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors duration-200"
                 >
                   Apply as a Partner <ArrowRight size={16} />
-                </Link>
+                </a>
                 <a
                   href="#what-we-build"
                   className="inline-flex items-center justify-center gap-2 text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] border border-ivory/25 hover:border-ivory/50 transition-colors duration-200"
@@ -415,27 +416,12 @@ export default function CommunityTrack() {
           </div>
         </section>
 
-        <section className="bg-ivory-deep py-24 px-6 border-t border-charcoal/10">
-          <Reveal className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-medium text-charcoal tracking-tight mb-6">
-              Tell us what is eating the week.
-            </h2>
-            <p className="text-charcoal/60 text-lg leading-relaxed mb-10">
-              Send a short note about your organization and the process that
-              costs you the most time. Mention the community track in your
-              message so it reaches the right place.
-            </p>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center justify-center gap-2 bg-charcoal hover:bg-charcoal/85 text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors"
-            >
-              Apply as a Partner <ArrowRight size={16} />
-            </Link>
-          </Reveal>
-        </section>
+        <CommunityApply />
       </main>
 
-      <footer className="bg-charcoal px-6 py-10">
+      {/* Hairline, because the form section above is charcoal too. The same
+          pairing the homepage uses between its form and footer. */}
+      <footer className="bg-charcoal border-t border-ivory/10 px-6 py-10">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
             href="/"
