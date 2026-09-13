@@ -96,9 +96,9 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 bg-clay hover:bg-clay-dark text-ivory text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2.5 transition-colors duration-200"
+          className="hidden md:inline-flex shrink-0 whitespace-nowrap items-center gap-2 bg-clay hover:bg-clay-dark text-ivory text-xs font-semibold uppercase tracking-[0.15em] px-5 py-2.5 transition-colors duration-200"
         >
-          Discuss Your Project
+          Free Demo
         </a>
 
         <button
@@ -130,7 +130,7 @@ export default function Nav() {
                 className="inline-flex bg-clay hover:bg-clay-dark text-ivory font-semibold px-5 py-2.5 text-xs uppercase tracking-[0.15em] transition-colors"
                 onClick={() => setOpen(false)}
               >
-                Discuss Your Project
+                Free Demo
               </a>
             </li>
           </ul>
