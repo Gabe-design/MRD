@@ -103,7 +103,7 @@ export default function PartnerStory(props: PartnerStoryProps) {
             <ArrowLeft size={14} /> Community Track
           </Link>
           <Link
-            href="/#contact"
+            href="/community#apply"
             className="inline-flex items-center gap-2 bg-clay hover:bg-clay-dark text-ivory text-xs font-semibold uppercase tracking-[0.15em] px-4 py-2 transition-colors"
           >
             Apply as a Partner
@@ -161,9 +161,11 @@ export default function PartnerStory(props: PartnerStoryProps) {
               <h2 className="text-3xl font-medium text-charcoal tracking-tight mb-8">
                 What was eating the week.
               </h2>
-              {problem.map((p) => (
+              {/* Keyed by position: the paragraphs are static prose, and two
+                  of them can open with the same words. */}
+              {problem.map((p, i) => (
                 <p
-                  key={p.slice(0, 40)}
+                  key={i}
                   className="text-charcoal/60 text-lg leading-relaxed mb-5 last:mb-0"
                 >
                   {p}
@@ -264,7 +266,7 @@ export default function PartnerStory(props: PartnerStoryProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/#contact"
+                href="/community#apply"
                 className="inline-flex items-center justify-center gap-2 bg-charcoal hover:bg-charcoal/85 text-ivory font-semibold px-8 py-4 text-sm uppercase tracking-[0.15em] transition-colors"
               >
                 Apply as a Partner <ArrowRight size={16} />
