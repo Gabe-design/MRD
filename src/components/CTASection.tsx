@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PatternBackdrop from "@/components/PatternBackdrop";
+import { BUILD_TIERS } from "@/lib/pricing";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 const inputClasses =
@@ -179,24 +180,46 @@ export default function CTASection() {
               />
             </div>
 
+            {/* A link does most of what a photo upload would, without the
+                storage, size limits, and abuse surface uploads bring. An
+                Instagram page is usually the best source of real photos a
+                local business has. */}
+            <div>
+              <label htmlFor="website" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                Current website or Instagram <span className="text-sand/60 font-normal">(optional)</span>
+              </label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                inputMode="url"
+                autoComplete="url"
+                placeholder="yourbusiness.com or @yourbusiness"
+                className={inputClasses}
+              />
+            </div>
+
             <div className="grid sm:grid-cols-2 gap-4">
-              {/* A link does most of what a photo upload would, without the
-                  storage, size limits, and abuse surface uploads bring. An
-                  Instagram page is usually the best source of real photos a
-                  local business has. */}
+              {/* Asks which product they are looking at rather than how much
+                  money they have. It reads from the published tiers so the
+                  options can never drift from the pricing page, and "not sure"
+                  has to be a fine answer or this is a budget question with a
+                  hat on. */}
               <div>
-                <label htmlFor="website" className="block text-sm font-medium text-ivory/80 mb-1.5">
-                  Current website or Instagram <span className="text-sand/60 font-normal">(optional)</span>
+                <label htmlFor="tier" className="block text-sm font-medium text-ivory/80 mb-1.5">
+                  Which tier sounds closest? <span className="text-sand/60 font-normal">(optional)</span>
                 </label>
-                <input
-                  id="website"
-                  name="website"
-                  type="text"
-                  inputMode="url"
-                  autoComplete="url"
-                  placeholder="yourbusiness.com or @yourbusiness"
-                  className={inputClasses}
-                />
+                <select id="tier" name="tier" className={selectClasses} defaultValue="">
+                  <option value="" disabled>
+                    Pick one
+                  </option>
+                  {BUILD_TIERS.map((t) => (
+                    <option key={t.name} value={t.name.toLowerCase()}>
+                      {t.name} · {t.price}
+                    </option>
+                  ))}
+                  <option value="unsure">Not sure yet</option>
+                </select>
               </div>
               <div>
                 <label htmlFor="style" className="block text-sm font-medium text-ivory/80 mb-1.5">

@@ -44,6 +44,7 @@ export async function onRequestPost({ request, env }) {
   const phone = clean(payload.phone);
   const services = clean(payload.services);
   const website = clean(payload.website);
+  const tier = clean(payload.tier);
   const style = clean(payload.style);
 
   // Services is required alongside the contact details: it is the one field
@@ -76,6 +77,7 @@ export async function onRequestPost({ request, env }) {
     `Email:    ${email}`,
     `Phone:    ${phone || "not given"}`,
     `Website:  ${website || "none"}`,
+    `Tier:     ${tier || "not chosen"}`,
     `Style:    ${style || "not chosen"}`,
     "",
     "What the business does:",
